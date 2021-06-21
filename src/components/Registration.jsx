@@ -4,7 +4,7 @@ import axios from "axios";
 const initialCredentials = {
   username: "",
   password: "",
-  instructorCode: ''
+  authCode: "",
 };
 
 function Registration() {
@@ -40,7 +40,7 @@ function Registration() {
       <form onSubmit={handleRegister}>
         <input type="text" name="username" onChange={handleChange} />
         <input type="password" name="password" onChange={handleChange} />
-        <input type="text" name="instructorCode" onChange={handleChange} />
+        <input type="text" name="authCode" onChange={handleChange} />
         <button>Register</button>
       </form>
     </div>
