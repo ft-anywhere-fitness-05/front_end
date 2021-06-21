@@ -8,6 +8,16 @@ export const initialState = {
   classes: [],
   isLoading: false,
   error: "",
+  formValues: {
+    name: "",
+    location: "",
+    start_time: "",
+    duration: "",
+    intensity: "",
+    class_description: "",
+    current_class_size: 0,
+    max_class_size: "",
+  },
 };
 
 export const classReducer = (state = initialState, action) => {

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import AddClass from "./AddClass";
 import { connect } from "react-redux";
 
 import { fetchClasses } from "../actions/classActions";
@@ -23,6 +24,7 @@ const ClassDashboard = (props) => {
     <div className="dashboard">
       <div>
         <button>Add Class</button>
+        <AddClass />
       </div>
       {classes.map((c) => (
         <div key={c.class_id}>
