@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+// import { useHistory } from "react-router";
 import AddClass from "./AddClass";
 import { connect } from "react-redux";
 
@@ -7,10 +8,26 @@ import axiosWithAuth from "../utils/axiosWithAuth";
 
 const ClassDashboard = (props) => {
   const { classes, isLoading, error } = props;
+  //   const { push } = useHistory();
 
   useEffect(() => {
     props.dispatch(fetchClasses());
   }, []);
+
+  const handleEdit = (id) => {
+    // push(`/edit-class/${id}`);
+  };
+
+  const handleDelete = (id) => {
+    axiosWithAuth()
+      .delete(`https://fitnessapplambda5.herokuapp.com/api/${id}/`)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   if (isLoading) {
     return <h2>Loading classes...</h2>;
@@ -40,7 +57,7 @@ const ClassDashboard = (props) => {
           </p>
           <div className="instructor-buttons">
             <button>Update</button>
-            <button>Delete</button>
+            <button onClick={() => handleDelete(c.class_id)}>Delete</button>
           </div>
           <div className="client-buttons">
             <button>Join</button>
