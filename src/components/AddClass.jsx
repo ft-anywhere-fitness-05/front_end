@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 
@@ -23,6 +24,15 @@ const AddClass = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log("click");
+    axiosWithAuth()
+      .post("https://fitnessapplambda5.herokuapp.com/api/classes/", newClass)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -80,8 +90,8 @@ const AddClass = () => {
           name="max_class_size"
           type="text"
         />
+        <button type="submit">Submit New Class</button>
       </form>
-      <button type="submit">Submit New Class</button>
     </div>
   );
 };
