@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axiosWithAuth from "../utils/axiosWithAuth";
+import axios from "axios";
 
 const initialCredentials = {
   username: "",
@@ -12,20 +12,31 @@ function Login() {
   const handleChange = (e) => {
     setCredentials({
       ...credentials,
-      [e.target.name]: [e.target.value],
+      [e.target.name]: e.target.value,
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
     console.log("You have logged in", credentials);
-    // axiosWithAuth().post('https://fitnessapplambda5.herokuapp.com/api/auth/login', null)
+    axios
+      .post(
+        "https://fitnessapplambda5.herokuapp.com/api/auth/login",
+        credentials
+      )
+      .then((res) => {
+        console.log(res);
+        localStorage.setItem("token", res.data.token);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
     <div>
       <h3>Log In</h3>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleLogin}>
         <input type="text" name="username" onChange={handleChange} />
         <input type="password" name="password" onChange={handleChange} />
         <button>Log In</button>
