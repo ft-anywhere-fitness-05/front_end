@@ -17,9 +17,13 @@ const ClassDashboard = () => {
 
   return (
     <div className="dashboard">
+      <div>
+        <button>Add Class</button>
+      </div>
       {classes.map((c) => (
         <div key={c.class_id}>
-          <h3>Name: {c.class_name}</h3>
+          <h2>Name: {c.class_name}</h2>
+          <h3>Location: {c.location}</h3>
           <h4>Start Time: {c.start_time}</h4>
           <h4>Duration: {c.duration}</h4>
           <h4>Intensity: {c.intensity}</h4>
@@ -28,6 +32,13 @@ const ClassDashboard = () => {
             Class Size: current: {c.current_class_size} / max:{" "}
             {c.max_class_size}
           </p>
+          <div className="instructor-buttons">
+            <button>Update</button>
+            <button>Delete</button>
+          </div>
+          <div className="client-buttons">
+            <button>Join</button>
+          </div>
         </div>
       ))}
     </div>
