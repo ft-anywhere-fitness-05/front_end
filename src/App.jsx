@@ -4,6 +4,7 @@ import "./App.css";
 import Registration from "./components/Registration";
 import ClassDashboard from "./components/ClassDashboard";
 import Login from "./components/Login";
+import EditClass from "./components/EditClass";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <ClassDashboard />
       <Login />
       <Registration />
+      <EditClass />
     </div>
   );
 }
