@@ -1,19 +1,23 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import { connect } from "react-redux";
 
-const ClassDashboard = () => {
-  const [classes, setClasses] = useState([]);
+import { fetchClasses } from "../actions/classActions";
+import axiosWithAuth from "../utils/axiosWithAuth";
+
+const ClassDashboard = (props) => {
+  const { classes, isLoading, error } = props;
 
   useEffect(() => {
-    axios
-      .get("https://fitnessapplambda5.herokuapp.com/api/classes/")
-      .then((res) => {
-        setClasses(res.data);
-      })
-      .catch((err) => {
-        console.log("GET Error: ", err);
-      });
+    props.dispatch(fetchClasses());
   }, []);
+
+  if (isLoading) {
+    return <h2>Loading classes...</h2>;
+  }
+
+  if (error) {
+    return <h2>We got an error: {error}</h2>;
+  }
 
   return (
     <div className="dashboard">
@@ -45,4 +49,12 @@ const ClassDashboard = () => {
   );
 };
 
-export default ClassDashboard;
+const mapStateToProps = (state) => {
+  return {
+    classes: state.classes,
+    isLoading: state.isLoading,
+    error: state.error,
+  };
+};
+
+export default connect(mapStateToProps)(ClassDashboard);
