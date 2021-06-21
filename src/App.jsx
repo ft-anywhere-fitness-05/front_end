@@ -1,11 +1,13 @@
-import React from 'react';
-import './App.css';
+import React from "react";
+import "./App.css";
+
+import ClassDashboard from "./components/ClassDashboard";
 
 function App() {
   return (
-    <p>
-      Cleanedup React App
-    </p>
+    <div>
+      <ClassDashboard />
+    </div>
   );
 }
 
