@@ -6,6 +6,7 @@ import axiosWithAuth from "../utils/axiosWithAuth";
 
 const initialFormValues = {
   class_name: "Yoga",
+  type_id: 0,
   location: "San Francisco, CA",
   start_time: "12:30:00",
   duration: "01:00:00",
@@ -13,7 +14,7 @@ const initialFormValues = {
   class_description: "It's just yoga.",
   current_class_size: 0,
   max_class_size: 15,
-  date:'2021-07-05T00:00:00.000Z'
+  date:'2021-07-05'
 };
 
 const AddClass = () => {
@@ -49,6 +50,19 @@ const AddClass = () => {
           name="class_name"
           type="text"
         />
+        <label>Type</label>
+        <select onChange={handleChange} name='type_id'>
+            <option value={1}>Yoga</option>
+            <option value={2}>Dance</option>
+            <option value={3}>HIIT</option>
+            <option value={4}>Full Body Fusion</option>
+            <option value={5}>Circuit Training</option>
+            <option value={6}>Water Aerobics</option>
+            <option value={7}>Cycling</option>
+            <option value={8}>Bootcamp</option>
+            <option value={9}>Conditioning</option>
+            <option value={10}>Kickboxing</option>
+        </select>
         <label>Location</label>
         <input
           value={newClass.location}
@@ -62,6 +76,7 @@ const AddClass = () => {
           onChange={handleChange}
           name="date"
           type="text"
+          placeholder='YYYY-MM-DD'
         />
         <label>Start Time</label>
         <input
