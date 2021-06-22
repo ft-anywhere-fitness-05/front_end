@@ -4,10 +4,10 @@ import axios from "axios";
 const initialCredentials = {
   username: "",
   password: "",
-  instructorCode: ''
+  authCode: "",
 };
 
-function Registration() {
+function Registration(props) {
   const [credentials, setCredentials] = useState(initialCredentials);
 
   const handleChange = (e) => {
@@ -27,7 +27,7 @@ function Registration() {
       )
       .then((res) => {
         console.log(res);
-        // localStorage.setItem("token", res.data.token);
+        props.history.push("/login")
       })
       .catch((err) => {
         console.log(err);
@@ -40,7 +40,7 @@ function Registration() {
       <form onSubmit={handleRegister}>
         <input type="text" name="username" onChange={handleChange} />
         <input type="password" name="password" onChange={handleChange} />
-        <input type="text" name="instructorCode" onChange={handleChange} />
+        <input type="text" name="authCode" onChange={handleChange} />
         <button>Register</button>
       </form>
     </div>

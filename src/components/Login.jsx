@@ -6,7 +6,7 @@ const initialCredentials = {
   password: "",
 };
 
-function Login() {
+function Login(props) {
   const [credentials, setCredentials] = useState(initialCredentials);
 
   const handleChange = (e) => {
@@ -27,6 +27,7 @@ function Login() {
       .then((res) => {
         console.log(res);
         localStorage.setItem("token", res.data.token);
+        props.history.push("/dashboard");
       })
       .catch((err) => {
         console.log(err);
@@ -41,6 +42,8 @@ function Login() {
         <input type="password" name="password" onChange={handleChange} />
         <button>Log In</button>
       </form>
+      <p>Don't have an account?</p>
+      <a href="/register">Register Here</a>
     </div>
   );
 }
