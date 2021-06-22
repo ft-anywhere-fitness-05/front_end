@@ -1,44 +1,51 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router";
-import { connect } from "react-redux";
-
+import React, { useState, useEffect } from "react";
+import { useHistory, useParams } from "react-router";
 import axiosWithAuth from "../utils/axiosWithAuth";
 
 const initialFormValues = {
-  class_name: "Yoga",
-  type_id: 1,
-  location: "San Francisco, CA",
-  start_time: "12:30:00",
-  duration: "01:00:00",
-  intensity: 5,
-  class_description: "It's just yoga.",
-  current_class_size: 0,
-  max_class_size: 15,
-  date: "2021-07-05",
+  class_name: "",
+  type_id: 0,
+  location: "",
+  start_time: "",
+  duration: "",
+  intensity: "",
+  class_description: "",
+  max_class_size: "",
 };
 
-const AddClass = () => {
-  const [newClass, setNewClass] = useState(initialFormValues);
+const EditClass = (props) => {
+  const [formValues, setFormValues] = useState(initialFormValues);
+
+  const { id } = useParams();
   const { push } = useHistory();
 
+  console.log(formValues);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const { data } = await axiosWithAuth().get(
+          `https://fitnessapplambda5.herokuapp.com/api/classes/${id}`
+        );
+        setFormValues(data);
+      } catch (err) {
+        console.log(err);
+      }
+    })();
+  }, [id]);
+
   const handleChange = (e) => {
-    let value = e.target.value;
-    if (e.target.name === "type_id") {
-      value = parseInt(value, 10);
-    }
-
-    setNewClass({ ...newClass, [e.target.name]: value });
+    setFormValues({ ...formValues, [e.target.name]: e.target.value });
   };
-
-  console.log(newClass);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(newClass);
-    console.log("click");
     axiosWithAuth()
-      .post("https://fitnessapplambda5.herokuapp.com/api/classes/", newClass)
-      .then(() => {
+      .patch(
+        `https://fitnessapplambda5.herokuapp.com/api/classes/${id}`,
+        formValues
+      )
+      .then((res) => {
         push("/dashboard");
       })
       .catch((err) => {
@@ -56,7 +63,7 @@ const AddClass = () => {
       <form onSubmit={handleSubmit}>
         <label>Class Name</label>
         <input
-          value={newClass.class_name}
+          value={formValues.class_name}
           onChange={handleChange}
           name="class_name"
           type="text"
@@ -76,62 +83,51 @@ const AddClass = () => {
         </select>
         <label>Location</label>
         <input
-          value={newClass.location}
+          value={formValues.location}
           onChange={handleChange}
           name="location"
           type="text"
         />
-        <label>Date</label>
-        <input
-          value={newClass.date}
-          onChange={handleChange}
-          name="date"
-          type="text"
-          placeholder="YYYY-MM-DD"
-        />
         <label>Start Time</label>
         <input
-          value={newClass.start_time}
+          value={formValues.start_time}
           onChange={handleChange}
           name="start_time"
           type="text"
-          placeholder="00:00:00"
         />
-        <label>Duration</label>
+        <label>duration</label>
         <input
-          value={newClass.duration}
+          value={formValues.duration}
           onChange={handleChange}
           name="duration"
           type="text"
-          placeholder="00:00:00"
         />
         <label>Intensity</label>
         <input
-          value={newClass.intensity}
+          value={formValues.intensity}
           onChange={handleChange}
           name="intensity"
-          type="number"
-          placeholder="1 - 10"
+          type="text"
         />
         <label>Class Description</label>
         <input
-          value={newClass.class_description}
+          value={formValues.class_description}
           onChange={handleChange}
           name="class_description"
           type="text"
         />
         <label>Max Class Size</label>
         <input
-          value={newClass.max_class_size}
+          value={formValues.max_class_size}
           onChange={handleChange}
           name="max_class_size"
-          type="number"
+          type="text"
         />
-        <button type="submit">Submit New Class</button>
+        <button type="submit">Submit Changes</button>
         <button onClick={handleCancel}>Cancel</button>
       </form>
     </div>
   );
 };
 
-export default AddClass;
+export default EditClass;
