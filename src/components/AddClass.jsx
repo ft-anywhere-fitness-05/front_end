@@ -5,14 +5,15 @@ import { connect } from "react-redux";
 import axiosWithAuth from "../utils/axiosWithAuth";
 
 const initialFormValues = {
-  name: "",
-  location: "",
-  start_time: "",
-  duration: "",
-  intensity: "",
-  class_description: "",
+  class_name: "Yoga",
+  location: "San Francisco, CA",
+  start_time: "12:30:00",
+  duration: "01:00:00",
+  intensity: 5,
+  class_description: "It's just yoga.",
   current_class_size: 0,
-  max_class_size: "",
+  max_class_size: 15,
+  date:'2021-07-05T00:00:00.000Z'
 };
 
 const AddClass = () => {
@@ -22,8 +23,11 @@ const AddClass = () => {
     setNewClass({ ...newClass, [e.target.name]: e.target.value });
   };
 
+  console.log(newClass)
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(newClass)
     console.log("click");
     axiosWithAuth()
       .post("https://fitnessapplambda5.herokuapp.com/api/classes/", newClass)
@@ -40,9 +44,9 @@ const AddClass = () => {
       <form onSubmit={handleSubmit}>
         <label>Class Name</label>
         <input
-          value={newClass.name}
+          value={newClass.class_name}
           onChange={handleChange}
-          name="name"
+          name="class_name"
           type="text"
         />
         <label>Location</label>
@@ -50,6 +54,13 @@ const AddClass = () => {
           value={newClass.location}
           onChange={handleChange}
           name="location"
+          type="text"
+        />
+        <label>Date</label>
+        <input
+          value={newClass.date}
+          onChange={handleChange}
+          name="date"
           type="text"
         />
         <label>Start Time</label>
@@ -74,7 +85,7 @@ const AddClass = () => {
           onChange={handleChange}
           name="intensity"
           type="text"
-          placeholder="1 - 5"
+          placeholder="1 - 10"
         />
         <label>Class Description</label>
         <input
