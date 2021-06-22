@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Registration from "./components/Registration";
 import ClassDashboard from "./components/ClassDashboard";
 import Login from "./components/Login";
-import AddClass from './components/AddClass'
+import AddClass from "./components/AddClass";
 import EditClass from "./components/EditClass";
 import ProtectedRoute from "./components/ProtectedRoute";
 
