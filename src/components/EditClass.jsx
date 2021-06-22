@@ -19,8 +19,6 @@ const EditClass = (props) => {
   const { id } = useParams();
   const { push } = useHistory();
 
-  console.log(formValues);
-
   useEffect(() => {
     (async () => {
       try {
