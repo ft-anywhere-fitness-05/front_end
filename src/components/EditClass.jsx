@@ -1,9 +1,10 @@
-import react, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router";
 import axiosWithAuth from "../utils/axiosWithAuth";
 
 const initialFormValues = {
   class_name: "",
+  type_id: 0,
   location: "",
   start_time: "",
   duration: "",
@@ -15,40 +16,23 @@ const initialFormValues = {
 const EditClass = (props) => {
   const [formValues, setFormValues] = useState(initialFormValues);
 
-  //   const { id } = useParams();
-  //   const { push } = useHistory();
+  const { id } = useParams();
+  const { push } = useHistory();
+
+  console.log(formValues);
 
   useEffect(() => {
     (async () => {
       try {
         const { data } = await axiosWithAuth().get(
-          `https://fitnessapplambda5.herokuapp.com/api/classes/1`
+          `https://fitnessapplambda5.herokuapp.com/api/classes/${id}`
         );
-        const {
-          class_name,
-          location,
-          start_time,
-          duration,
-          intensity,
-          class_description,
-          max_class_size,
-        } = data;
-
-        setFormValues((prev) => ({
-          ...prev,
-          class_name,
-          location,
-          start_time,
-          duration,
-          intensity,
-          class_description,
-          max_class_size,
-        }));
+        setFormValues(data);
       } catch (err) {
         console.log(err);
       }
     })();
-  }, []);
+  }, [id]);
 
   const handleChange = (e) => {
     setFormValues({ ...formValues, [e.target.name]: e.target.value });
@@ -56,6 +40,22 @@ const EditClass = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    axiosWithAuth()
+      .patch(
+        `https://fitnessapplambda5.herokuapp.com/api/classes/${id}`,
+        formValues
+      )
+      .then((res) => {
+        push("/dashboard");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const handleCancel = (e) => {
+    e.preventDefault();
+    push("/dashboard");
   };
 
   return (
@@ -65,9 +65,22 @@ const EditClass = (props) => {
         <input
           value={formValues.class_name}
           onChange={handleChange}
-          name="name"
+          name="class_name"
           type="text"
         />
+        <label>Type</label>
+        <select onChange={handleChange} name="type_id">
+          <option value={1}>Yoga</option>
+          <option value={2}>Dance</option>
+          <option value={3}>HIIT</option>
+          <option value={4}>Full Body Fusion</option>
+          <option value={5}>Circuit Training</option>
+          <option value={6}>Water Aerobics</option>
+          <option value={7}>Cycling</option>
+          <option value={8}>Bootcamp</option>
+          <option value={9}>Conditioning</option>
+          <option value={10}>Kickboxing</option>
+        </select>
         <label>Location</label>
         <input
           value={formValues.location}
@@ -111,7 +124,7 @@ const EditClass = (props) => {
           type="text"
         />
         <button type="submit">Submit Changes</button>
-        <button>Cancel</button>
+        <button onClick={handleCancel}>Cancel</button>
       </form>
     </div>
   );

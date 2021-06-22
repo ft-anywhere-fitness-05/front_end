@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
-// import { useHistory } from "react-router";
-import AddClass from "./AddClass";
+import React, { useEffect } from "react";
+import { useHistory } from "react-router";
 import { connect } from "react-redux";
 
 import { fetchClasses } from "../actions/classActions";
@@ -8,14 +7,18 @@ import axiosWithAuth from "../utils/axiosWithAuth";
 
 const ClassDashboard = (props) => {
   const { classes, isLoading, error } = props;
-  //   const { push } = useHistory();
+  const { push } = useHistory();
 
   useEffect(() => {
     props.dispatch(fetchClasses());
   }, []);
 
+  const handleAdd = () => {
+    push("/add-class");
+  };
+
   const handleEdit = (id) => {
-    // push(`/edit-class/${id}`);
+    push(`/edit-class/${id}`);
   };
 
   const handleDelete = (id) => {
@@ -40,8 +43,7 @@ const ClassDashboard = (props) => {
   return (
     <div className="dashboard">
       <div>
-        <button>Add Class</button>
-        <AddClass />
+        <button onClick={handleAdd}>Add Class</button>
       </div>
       {classes.map((c) => (
         <div key={c.class_id}>
@@ -57,7 +59,7 @@ const ClassDashboard = (props) => {
             {c.max_class_size}
           </p>
           <div className="instructor-buttons">
-            <button>Update</button>
+            <button onClick={() => handleEdit(c.class_id)}>Update</button>
             <button onClick={() => handleDelete(c.class_id)}>Delete</button>
           </div>
           <div className="client-buttons">
