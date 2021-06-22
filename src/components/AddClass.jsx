@@ -22,8 +22,15 @@ const AddClass = () => {
   const { push } = useHistory();
 
   const handleChange = (e) => {
-    setNewClass({ ...newClass, [e.target.name]: e.target.value });
+    let value = e.target.value;
+    if (e.target.name === "type_id") {
+      value = parseInt(value, 10);
+    }
+
+    setNewClass({ ...newClass, [e.target.name]: value });
   };
+
+  console.log(newClass);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -103,7 +110,7 @@ const AddClass = () => {
           value={newClass.intensity}
           onChange={handleChange}
           name="intensity"
-          type="text"
+          type="number"
           placeholder="1 - 10"
         />
         <label>Class Description</label>
@@ -118,7 +125,7 @@ const AddClass = () => {
           value={newClass.max_class_size}
           onChange={handleChange}
           name="max_class_size"
-          type="text"
+          type="number"
         />
         <button type="submit">Submit New Class</button>
         <button onClick={handleCancel}>Cancel</button>

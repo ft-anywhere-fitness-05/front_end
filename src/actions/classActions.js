@@ -12,7 +12,6 @@ export const fetchClasses = () => {
       .get("https://fitnessapplambda5.herokuapp.com/api/classes/")
       .then((res) => {
         dispatch(fetchSuccess(res.data));
-        console.log(res.data);
       })
       .catch((err) => {
         dispatch(fetchFail(err));

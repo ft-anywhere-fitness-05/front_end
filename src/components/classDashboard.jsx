@@ -23,12 +23,12 @@ const ClassDashboard = (props) => {
 
   const handleDelete = (id) => {
     axiosWithAuth()
-      .delete(`https://fitnessapplambda5.herokuapp.com/api/${id}/`)
-      .then((res) => {
-        console.log(res.data);
+      .delete(`https://fitnessapplambda5.herokuapp.com/api/classes/${id}/`)
+      .then(() => {
+        props.dispatch(fetchClasses());
       })
       .catch((err) => {
-        console.log(err);
+        console.log("Error: ", err);
       });
   };
 
