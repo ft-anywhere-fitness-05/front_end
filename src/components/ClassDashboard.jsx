@@ -70,7 +70,11 @@ const ClassDashboard = (props) => {
             <button onClick={() => handleDelete(c.class_id)}>Delete</button>
           </div>
           <div className="client-buttons">
-            <button onClick={handleJoin()}>Join</button>
+            <button
+              onClick={() => handleJoin("userId", c.class_id) /*needs user ID*/}
+            >
+              Join
+            </button>{" "}
           </div>
         </div>
       ))}
