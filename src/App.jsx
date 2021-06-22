@@ -13,6 +13,7 @@ function App() {
       <Switch>
         <ProtectedRoute path="/dashboard" component={ClassDashboard} />
         <Route path="/login" component={Login} />
+        <Route path="/register" component={Registration} />
         <Route component={Login} />
       </Switch>
     </Router>

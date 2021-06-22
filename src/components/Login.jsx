@@ -43,7 +43,7 @@ function Login(props) {
         <button>Log In</button>
       </form>
       <p>Don't have an account?</p>
-      <a>Register Here</a>
+      <a href="/register">Register Here</a>
     </div>
   );
 }
