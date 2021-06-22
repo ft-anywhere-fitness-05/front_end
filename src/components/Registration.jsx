@@ -38,9 +38,9 @@ function Registration(props) {
     <div>
       <h3>Register</h3>
       <form onSubmit={handleRegister}>
-        <input type="text" name="username" onChange={handleChange} />
-        <input type="password" name="password" onChange={handleChange} />
-        <input type="text" name="authCode" onChange={handleChange} />
+        <input value={credentials.username} type="text" name="username" onChange={handleChange} />
+        <input value={credentials.password} type="password" name="password" onChange={handleChange} />
+        <input value={credentials.authCode} type="text" name="authCode" onChange={handleChange} />
         <button>Register</button>
       </form>
     </div>
