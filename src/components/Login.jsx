@@ -38,8 +38,8 @@ function Login(props) {
     <div>
       <h3>Log In</h3>
       <form onSubmit={handleLogin}>
-        <input type="text" name="username" onChange={handleChange} />
-        <input type="password" name="password" onChange={handleChange} />
+        <input value={credentials.username} type="text" name="username" onChange={handleChange} />
+        <input value={credentials.password} type="password" name="password" onChange={handleChange} />
         <button>Log In</button>
       </form>
       <p>Don't have an account?</p>
