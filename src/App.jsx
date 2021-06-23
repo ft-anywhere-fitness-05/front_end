@@ -2,10 +2,12 @@ import React from "react";
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
+import Navigation from "./components/Navigation";
 import Registration from "./components/Registration";
 import ClassDashboard from "./components/ClassDashboard";
+import ReservationList from "./components/ReservationList";
 import Login from "./components/Login";
-import AddClass from './components/AddClass'
+import AddClass from "./components/AddClass";
 import EditClass from "./components/EditClass";
 import ProtectedRoute from "./components/ProtectedRoute";
 
@@ -13,7 +15,14 @@ function App() {
   return (
     <Router>
       <Switch>
-        <ProtectedRoute path="/dashboard" component={ClassDashboard} />
+        <ProtectedRoute path="/dashboard">
+          <Navigation />
+          <ClassDashboard />
+        </ProtectedRoute>
+        <ProtectedRoute path="/reservations">
+          <Navigation />
+          <ReservationList />
+        </ProtectedRoute>
         <ProtectedRoute path="/add-class" component={AddClass} />
         <ProtectedRoute path="/edit-class/:id" component={EditClass} />
         <Route path="/login" component={Login} />
