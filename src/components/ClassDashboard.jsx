@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useHistory } from "react-router";
 import { connect } from "react-redux";
-import { fetchClasses } from "../actions/classActions";
+import { fetchClasses, deleteClass } from "../actions/classActions";
 import axiosWithAuth from "../utils/axiosWithAuth";
 
 const ClassDashboard = (props) => {
@@ -31,8 +31,9 @@ const ClassDashboard = (props) => {
   const handleDelete = (id) => {
     axiosWithAuth()
       .delete(`https://fitnessapplambda5.herokuapp.com/api/classes/${id}/`)
-      .then(() => {
-        props.dispatch(fetchClasses());
+      .then((res) => {
+        deleteClass(id);
+        console.log(res);
       })
       .catch((err) => {
         console.log("Error: ", err);
@@ -74,11 +75,7 @@ const ClassDashboard = (props) => {
             </div>
           ) : (
             <div className="client-buttons">
-              <button
-                onClick={
-                  () => handleJoin("userId", c.class_id) /*needs user ID*/
-                }
-              >
+              <button onClick={() => handleJoin(userId, c.class_id)}>
                 Join
               </button>{" "}
             </div>

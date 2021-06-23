@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router";
+import { connect } from "react-redux";
 
 import axiosWithAuth from "../utils/axiosWithAuth";
 
-const ReservationList = () => {
+const ReservationList = (props) => {
+  const { userId } = props;
   const [classes, setClasses] = useState([]);
   const { push } = useHistory();
 
   useEffect(() => {
     axiosWithAuth()
-      .get(`https://fitnessapplambda5.herokuapp.com/api/user-classes/:user_id`) //Needs user id
+      .get(`https://fitnessapplambda5.herokuapp.com/api/user-classes/${userId}`)
       .then((res) => {
         setClasses(res.data);
       })
@@ -21,10 +23,10 @@ const ReservationList = () => {
   const handleDelete = (classId) => {
     axiosWithAuth()
       .delete(
-        `https://fitnessapplambda5.herokuapp.com/api/user-classes/:user_id/${classId}` //Needs user id
+        `https://fitnessapplambda5.herokuapp.com/api/user-classes/${userId}/${classId}`
       )
       .then((res) => {
-        console.log(res); //Needs redirect??
+        console.log(res);
       })
       .catch((err) => {
         console.log(err);
@@ -56,4 +58,10 @@ const ReservationList = () => {
   );
 };
 
-export default ReservationList;
+const mapStateToProps = (state) => {
+  return {
+    userId: state.user.id,
+  };
+};
+
+export default connect(mapStateToProps)(ReservationList);

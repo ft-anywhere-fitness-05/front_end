@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router";
 import { connect } from "react-redux";
+import { addClass } from "../actions/classActions";
 
 import axiosWithAuth from "../utils/axiosWithAuth";
 
@@ -30,15 +31,12 @@ const AddClass = () => {
     setNewClass({ ...newClass, [e.target.name]: value });
   };
 
-  console.log(newClass);
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(newClass);
-    console.log("click");
     axiosWithAuth()
       .post("https://fitnessapplambda5.herokuapp.com/api/classes/", newClass)
-      .then(() => {
+      .then((res) => {
+        addClass(res.data.createdClass);
         push("/dashboard");
       })
       .catch((err) => {

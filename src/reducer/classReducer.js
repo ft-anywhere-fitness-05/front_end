@@ -2,22 +2,14 @@ import {
   FETCH_START,
   FETCH_SUCCESS,
   FETCH_FAIL,
+  DELETE_CLASS,
+  ADD_CLASS,
 } from "../actions/classActions";
 
 export const initialState = {
   classes: [],
   isLoading: false,
   error: "",
-  formValues: {
-    name: "",
-    location: "",
-    start_time: "",
-    duration: "",
-    intensity: "",
-    class_description: "",
-    current_class_size: 0,
-    max_class_size: "",
-  },
 };
 
 export const classReducer = (state = initialState, action) => {
@@ -38,6 +30,16 @@ export const classReducer = (state = initialState, action) => {
         ...state,
         isLoading: false,
         error: action.payload,
+      };
+    case ADD_CLASS:
+      return {
+        ...state,
+        classes: [...state.classes, action.payload],
+      };
+    case DELETE_CLASS:
+      return {
+        ...state,
+        classes: [state.classes.filter((c) => c.class_id !== action.payload)],
       };
     default:
       return state;
