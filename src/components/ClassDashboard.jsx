@@ -12,9 +12,7 @@ const ClassDashboard = () => {
 
   useEffect(() => {
     dispatch(fetchClasses());
-  }, []);
-
-  console.log("currentClasses: ", classes);
+  }, [dispatch]);
 
   const handleAdd = () => {
     push("/add-class");

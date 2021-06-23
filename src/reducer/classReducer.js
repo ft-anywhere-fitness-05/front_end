@@ -4,6 +4,7 @@ import {
   FETCH_FAIL,
   CLASS_DELETED,
   CLASS_ADDED,
+  CLASS_EDITED,
 } from "../actions/classActions";
 
 export const initialState = {
@@ -35,6 +36,15 @@ export const classReducer = (state = initialState, action) => {
       return {
         ...state,
         classes: [...state.classes, action.payload.createdClass],
+      };
+    case CLASS_EDITED:
+      return {
+        ...state,
+        classes: state.classes.map((c) => {
+          return c.class_id === action.payload.updatedClass.class_id
+            ? action.payload.updatedClass
+            : c;
+        }),
       };
     case CLASS_DELETED:
       return {
