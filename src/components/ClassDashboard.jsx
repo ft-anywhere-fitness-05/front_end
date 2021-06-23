@@ -1,16 +1,19 @@
 import React, { useEffect } from "react";
 import { useHistory } from "react-router";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { fetchClasses, deleteClass } from "../actions/classActions";
 import axiosWithAuth from "../utils/axiosWithAuth";
 
-const ClassDashboard = (props) => {
-  const { classes, isLoading, error, userType, userId } = props;
+const ClassDashboard = () => {
+  const { classes, isLoading, error } = useSelector((state) => state.classes);
+  const userType = useSelector((state) => state.user.userType);
+  const userId = useSelector((state) => state.user.id);
   const { push } = useHistory();
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    props.dispatch(fetchClasses());
-  }, []);
+    dispatch(fetchClasses());
+  }, [dispatch]);
 
   const handleAdd = () => {
     push("/add-class");
@@ -32,7 +35,7 @@ const ClassDashboard = (props) => {
     axiosWithAuth()
       .delete(`https://fitnessapplambda5.herokuapp.com/api/classes/${id}/`)
       .then((res) => {
-        deleteClass(id);
+        dispatch(deleteClass(id));
         console.log(res);
       })
       .catch((err) => {
@@ -86,14 +89,4 @@ const ClassDashboard = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    classes: state.classes.classes,
-    isLoading: state.classes.isLoading,
-    error: state.classes.error,
-    userType: state.user.userType,
-    userId: state.user.id,
-  };
-};
-
-export default connect(mapStateToProps)(ClassDashboard);
+export default ClassDashboard;

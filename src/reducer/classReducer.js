@@ -3,7 +3,7 @@ import {
   FETCH_SUCCESS,
   FETCH_FAIL,
   DELETE_CLASS,
-  ADD_CLASS,
+  CLASS_ADDED,
 } from "../actions/classActions";
 
 export const initialState = {
@@ -31,7 +31,7 @@ export const classReducer = (state = initialState, action) => {
         isLoading: false,
         error: action.payload,
       };
-    case ADD_CLASS:
+    case CLASS_ADDED:
       return {
         ...state,
         classes: [...state.classes, action.payload],
@@ -39,7 +39,7 @@ export const classReducer = (state = initialState, action) => {
     case DELETE_CLASS:
       return {
         ...state,
-        classes: [state.classes.filter((c) => c.class_id !== action.payload)],
+        classes: state.classes.filter((c) => c.class_id !== action.payload),
       };
     default:
       return state;

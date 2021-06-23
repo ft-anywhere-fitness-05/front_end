@@ -3,7 +3,7 @@ import axiosWithAuth from "../utils/axiosWithAuth";
 export const FETCH_START = "FETCH_START";
 export const FETCH_SUCCESS = "FETCH_SUCCESS";
 export const FETCH_FAIL = "FETCH_FAIL";
-export const ADD_CLASS = "ADD_CLASS";
+export const CLASS_ADDED = "CLASS_ADDED";
 export const DELETE_CLASS = "DELETE_CLASS";
 
 export const fetchClasses = () => {
@@ -21,6 +21,19 @@ export const fetchClasses = () => {
   };
 };
 
+export const addClass = (newClass) => {
+  return (dispatch) => {
+    axiosWithAuth()
+      .post("https://fitnessapplambda5.herokuapp.com/api/classes/", newClass)
+      .then((res) => {
+        dispatch(classAdded(res.data));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+
 export const fetchStart = () => {
   return { type: FETCH_START };
 };
@@ -33,8 +46,8 @@ export const fetchFail = (error) => {
   return { type: FETCH_FAIL, payload: error };
 };
 
-export const addClass = (newClass) => {
-  return { type: ADD_CLASS, payload: newClass };
+export const classAdded = (newClass) => {
+  return { type: CLASS_ADDED, payload: newClass };
 };
 
 export const deleteClass = (id) => {
