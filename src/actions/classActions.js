@@ -5,6 +5,7 @@ export const FETCH_SUCCESS = "FETCH_SUCCESS";
 export const FETCH_FAIL = "FETCH_FAIL";
 export const CLASS_ADDED = "CLASS_ADDED";
 export const CLASS_EDITED = "CLASS_EDITED";
+export const CLASS_JOINED = "CLASS_JOINED";
 export const CLASS_DELETED = "CLASS_DELETED";
 
 export const fetchClasses = () => {
@@ -52,11 +53,11 @@ export const editClass = (id, editedClass) => {
 };
 
 export const joinClass = (info) => {
-  return () => {
+  return (dispatch) => {
     axiosWithAuth()
       .post(`https://fitnessapplambda5.herokuapp.com/api/user-classes`, info)
       .then((res) => {
-        console.log(res);
+        dispatch(classJoined(res.data));
       })
       .catch((err) => {
         console.log(err);
@@ -95,6 +96,10 @@ export const classAdded = (newClass) => {
 
 export const classEdited = (editedClass) => {
   return { type: CLASS_EDITED, payload: editedClass };
+};
+
+export const classJoined = (joinedClass) => {
+  return { type: CLASS_JOINED, payload: joinedClass };
 };
 
 export const classDeleted = (id) => {
