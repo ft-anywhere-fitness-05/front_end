@@ -15,7 +15,7 @@ function Login(props) {
   const [credentials, setCredentials] = useState(initialCredentials);
 
   const { id, userType } = props;
-  // const [id, setId] = useState(initialId)
+  
 
   const handleChange = (e) => {
     setCredentials({
@@ -58,6 +58,7 @@ function Login(props) {
 
   return (
     <div className='login'>
+      <h1>Here are the user details: {id}{userType}</h1>
       <h3>Log In</h3>
       <form onSubmit={handleLogin}>
         <input value={credentials.username} type="text" name="username" onChange={handleChange} />
