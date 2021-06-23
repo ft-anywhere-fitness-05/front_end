@@ -52,7 +52,7 @@ const AddClass = () => {
   };
 
   return (
-    <div>
+    <div className='addClass'>
       <form onSubmit={handleSubmit}>
         <label>Class Name</label>
         <input

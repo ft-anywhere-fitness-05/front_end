@@ -116,7 +116,7 @@ div.registration {
     flex-flow: row;
     flex-wrap: wrap;
     
-    /* max-width: 100%; */
+   
     
 }
 
@@ -130,4 +130,33 @@ div.dashboard-info {
 .dashboard-info:hover {
     background: linear-gradient(orangered, 10%, white, 80%, orangered) ;
 
+}
+
+div.addClass {
+     display: flex;
+     width: 60%;
+     padding: 2%;
+     margin: 20%;
+     border: 2px solid black;
+     stop-opacity: inherit;
+}
+
+.addClass form {
+    display: flex;
+    flex-wrap: wrap;
+    /* flex-flow: column; */
+    align-items: center;
+    justify-content: space-evenly;
+    border: 1px solid black;
+    
+}
+
+.addClass label {
+    font-size: 1.2rem;
+    
+}
+
+.addClass input {
+    font-size: 0.8rem;
+    margin: 2% 0;
 }
