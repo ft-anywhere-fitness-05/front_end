@@ -57,8 +57,7 @@ function Login(props) {
   };
 
   return (
-    <div>
-      <h1>Here are the user details: {id}{userType}</h1>
+    <div className='login'>
       <h3>Log In</h3>
       <form onSubmit={handleLogin}>
         <input value={credentials.username} type="text" name="username" onChange={handleChange} />
