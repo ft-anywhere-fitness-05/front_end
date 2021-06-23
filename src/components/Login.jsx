@@ -4,7 +4,7 @@ import axios from "axios";
 import axiosWithAuth from "../utils/axiosWithAuth";
 
 import { connect } from "react-redux";
-import { stashUserData } from "./../actions/userInformationActions"
+import { stashUserData } from "./../actions/userInformationActions";
 
 const initialCredentials = {
   username: "",
@@ -36,33 +36,47 @@ function Login(props) {
         console.log(res);
         localStorage.setItem("token", res.data.token);
         //I will need to add the id from the response to state once this is built into the API
-        props.dispatch(stashUserData(res.data))
+        props.dispatch(stashUserData(res.data));
         props.history.push("/dashboard");
       })
       .catch((err) => {
         console.log(err);
       });
-      
-      // axiosWithAuth().get("https://fitnessapplambda5.herokuapp.com/api/users/1")
-      //   .then(res => {console.log(res)})
-      //   .catch(err => {console.log(err)})
 
-      // props.dispatch(determineId())
+    // axiosWithAuth().get("https://fitnessapplambda5.herokuapp.com/api/users/1")
+    //   .then(res => {console.log(res)})
+    //   .catch(err => {console.log(err)})
 
-      // props.dispatch(checkInstructor(1))
-      // console.log()
-      console.log(id)
-      console.log(userType)
+    // props.dispatch(determineId())
 
+    // props.dispatch(checkInstructor(1))
+    // console.log()
+    console.log(id);
+    console.log(userType);
   };
 
   return (
     <div>
-      <h1>Here are the user details: {id}{userType}</h1>
+      <h1>
+        Here are the user details: {id}
+        {userType}
+      </h1>
       <h3>Log In</h3>
       <form onSubmit={handleLogin}>
-        <input value={credentials.username} type="text" name="username" onChange={handleChange} />
-        <input value={credentials.password} type="password" name="password" onChange={handleChange} />
+        <input
+          value={credentials.username}
+          type="text"
+          name="username"
+          placeholder="Username"
+          onChange={handleChange}
+        />
+        <input
+          value={credentials.password}
+          type="password"
+          name="password"
+          placeholder="Password"
+          onChange={handleChange}
+        />
         <button>Log In</button>
       </form>
       <p>Don't have an account?</p>
@@ -74,9 +88,9 @@ function Login(props) {
 const mapStateToProps = (state) => {
   return {
     id: state.id,
-    userType: state.userType
-  }
-}
+    userType: state.userType,
+  };
+};
 
 export default connect(mapStateToProps)(Login);
 

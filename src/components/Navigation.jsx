@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 
-const Navigation = (props) => {
-  const { userType } = props;
+const Navigation = () => {
+  const userType = useSelector((state) => state.user.userType);
 
   const logout = () => {
     localStorage.removeItem("token");
@@ -19,10 +19,4 @@ const Navigation = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    userType: state.user.userType,
-  };
-};
-
-export default connect(mapStateToProps)(Navigation);
+export default Navigation;
