@@ -1,7 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
-const Navigation = () => {
+const Navigation = (props) => {
+  const { userType } = props;
+
   const logout = () => {
     localStorage.removeItem("token");
     window.location.href = "/";
@@ -10,10 +13,16 @@ const Navigation = () => {
   return (
     <div>
       <Link to="/dashboard">Dashboard</Link>
-      <Link to="/reservations">My Classes</Link>
+      {userType === "client" && <Link to="/reservations">My Classes</Link>}
       <Link onClick={logout}>Logout</Link>
     </div>
   );
 };
 
-export default Navigation;
+const mapStateToProps = (state) => {
+  return {
+    userType: state.user.userType,
+  };
+};
+
+export default connect(mapStateToProps)(Navigation);

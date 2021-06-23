@@ -5,7 +5,7 @@ import { fetchClasses } from "../actions/classActions";
 import axiosWithAuth from "../utils/axiosWithAuth";
 
 const ClassDashboard = (props) => {
-  const { classes, isLoading, error } = props;
+  const { classes, isLoading, error, userType, userId } = props;
   const { push } = useHistory();
 
   useEffect(() => {
@@ -49,9 +49,11 @@ const ClassDashboard = (props) => {
 
   return (
     <div className="dashboard">
-      <div>
-        <button onClick={handleAdd}>Add Class</button>
-      </div>
+      {userType === "instructor" && (
+        <div>
+          <button onClick={handleAdd}>Add Class</button>
+        </div>
+      )}
       {classes.map((c) => (
         <div key={c.class_id}>
           <h2>Name: {c.class_name}</h2>
@@ -65,17 +67,22 @@ const ClassDashboard = (props) => {
             Class Size: current: {c.current_class_size} / max:{" "}
             {c.max_class_size}
           </p>
-          <div className="instructor-buttons">
-            <button onClick={() => handleEdit(c.class_id)}>Update</button>
-            <button onClick={() => handleDelete(c.class_id)}>Delete</button>
-          </div>
-          <div className="client-buttons">
-            <button
-              onClick={() => handleJoin("userId", c.class_id) /*needs user ID*/}
-            >
-              Join
-            </button>{" "}
-          </div>
+          {userType === "instructor" ? (
+            <div className="instructor-buttons">
+              <button onClick={() => handleEdit(c.class_id)}>Update</button>
+              <button onClick={() => handleDelete(c.class_id)}>Delete</button>
+            </div>
+          ) : (
+            <div className="client-buttons">
+              <button
+                onClick={
+                  () => handleJoin("userId", c.class_id) /*needs user ID*/
+                }
+              >
+                Join
+              </button>{" "}
+            </div>
+          )}
         </div>
       ))}
     </div>
@@ -87,6 +94,8 @@ const mapStateToProps = (state) => {
     classes: state.classes.classes,
     isLoading: state.classes.isLoading,
     error: state.classes.error,
+    userType: state.user.userType,
+    userId: state.user.id,
   };
 };
 
