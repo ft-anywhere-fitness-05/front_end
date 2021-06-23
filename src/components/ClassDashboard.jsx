@@ -40,14 +40,14 @@ const ClassDashboard = () => {
   }
 
   return (
-    <div className="dashboard">
+    <div className="dashboard-container">
       {userType === "instructor" && (
         <div>
           <button onClick={handleAdd}>Add Class</button>
         </div>
       )}
       {classes.map((c) => (
-        <div key={c.class_id}>
+        <div className="dashboard-info" key={c.class_id}>
           <h2>Name: {c.class_name}</h2>
           <h3>Location: {c.location}</h3>
           <h3>Date: {c.date}</h3>
@@ -73,6 +73,9 @@ const ClassDashboard = () => {
           )}
         </div>
       ))}
+      <div>
+        <button onClick={handleAdd}>Add Class</button>
+      </div>
     </div>
   );
 };
