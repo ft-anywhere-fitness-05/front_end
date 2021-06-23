@@ -36,10 +36,14 @@ export const addClass = (newClass) => {
 
 export const joinClass = (info) => {
   return () => {
-    axiosWithAuth().post(
-      `https://fitnessapplambda5.herokuapp.com/api/user-classes`,
-      info
-    );
+    axiosWithAuth()
+      .post(`https://fitnessapplambda5.herokuapp.com/api/user-classes`, info)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 };
 

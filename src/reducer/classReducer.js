@@ -34,7 +34,7 @@ export const classReducer = (state = initialState, action) => {
     case CLASS_ADDED:
       return {
         ...state,
-        classes: [...state.classes, action.payload],
+        classes: [...state.classes, action.payload.createdClass],
       };
     case CLASS_DELETED:
       return {
