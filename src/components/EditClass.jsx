@@ -20,17 +20,15 @@ const EditClass = (props) => {
   const { push } = useHistory();
 
   useEffect(() => {
-    (async () => {
-      try {
-        const { data } = await axiosWithAuth().get(
-          `https://fitnessapplambda5.herokuapp.com/api/classes/${id}`
-        );
-        setFormValues(data);
-      } catch (err) {
+    axiosWithAuth()
+      .get(`https://fitnessapplambda5.herokuapp.com/api/classes/${id}`)
+      .then((res) => {
+        setFormValues(res.data);
+      })
+      .catch((err) => {
         console.log(err);
-      }
-    })();
-  }, [id]);
+      });
+  }, []);
 
   const handleChange = (e) => {
     setFormValues({ ...formValues, [e.target.name]: e.target.value });
