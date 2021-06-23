@@ -55,7 +55,8 @@ div.login {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: rgb(233, 235, 236);
+    background: linear-gradient(orangered, 10%, white, 80%, orangered) ;
+    margin: 0 30%;
 }
 
 .login form {
@@ -76,16 +77,27 @@ div.login {
 
 div.registration {
     display: flex;
-    flex-flow: column;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-around;
+    background: linear-gradient(orangered, 10%, white, 80%, orangered) ;
+    margin: 0 30%;
 
 }
 
 .registration form {
     display: flex;
     flex-flow: column;
-    width: 25%;
+    width: 35%;
+}
+
+.registration button {
+    margin: 0 20%;
+    background-color: white;       
+    color: orangered;
+}
+
+.registration button:hover {
+    transform: scale(1.1);
 }
 
 .dashboard-container {
@@ -102,4 +114,9 @@ div.dashboard-info {
     padding: 2%;
     width: 40%;
     margin: 2%;
+}
+
+.dashboard-info:hover {
+    background: linear-gradient(orangered, 10%, white, 80%, orangered) ;
+
 }
