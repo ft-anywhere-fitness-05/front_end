@@ -3,6 +3,6 @@ import { classReducer } from "./classReducer";
 import { userInformationReducer } from './userInformationReducer'
 
 export default combineReducers({
-  classReducer,
-  userInformationReducer
+  classes: classReducer,
+  user: userInformationReducer
 });

@@ -2,11 +2,11 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
-// import reducer from "./reducer/index";
+import reducer from "./reducer/index";
 // import { classReducer } from "./reducer/classReducer";
 // import { userInformationReducer } from "./reducer/userInformationReducer"
 
-import { combinedReducer } from "./reducer/combinedReducersFile"
+// import { combinedReducer } from "./reducer/combinedReducersFile"
 
 import logger from "redux-logger";
 import thunk from "redux-thunk";
@@ -14,7 +14,7 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
-const store = createStore(combinedReducer, applyMiddleware(logger, thunk));
+const store = createStore(reducer, applyMiddleware(logger, thunk));
 
 ReactDOM.render(
   <React.StrictMode>
