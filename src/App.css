@@ -67,6 +67,10 @@ div.login {
     
 }
 
+.login input {
+    margin: 2% 0;
+}
+
 .login button {
     margin: 0 30%;
     background-color: white;       
@@ -83,13 +87,18 @@ div.registration {
     align-items: center;
     background: linear-gradient(orangered, 10%, white, 80%, orangered) ;
     margin: 0 30%;
-
+    margin-top: 30%;
+    padding: 10% 0;
 }
 
 .registration form {
     display: flex;
     flex-flow: column;
     width: 35%;
+}
+
+.registration input {
+    margin: 2% 0;
 }
 
 .registration button {
