@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
+
 const initialCredentials = {
   username: "",
   password: "",
@@ -35,7 +36,7 @@ function Registration(props) {
   };
 
   return (
-    <div>
+    <div className='registration'>
       <h3>Register</h3>
       <form onSubmit={handleRegister}>
         <input value={credentials.username} type="text" name="username" onChange={handleChange} />

@@ -54,11 +54,19 @@ body {
 div.login {
     display: flex;
     flex-direction: column;
+    align-items: center;
     background-color: rgb(233, 235, 236);
 }
 
+.login form {
+    display: flex;
+    flex-flow: column;
+    
+}
+
 .login button {
-    background-color: white;
+    margin: 0 30%;
+    background-color: white;       
     color: orangered;
 }
 
@@ -66,3 +74,32 @@ div.login {
     transform: scale(1.1);
 }
 
+div.registration {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: space-around;
+
+}
+
+.registration form {
+    display: flex;
+    flex-flow: column;
+    width: 25%;
+}
+
+.dashboard-container {
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+    
+    /* max-width: 100%; */
+    
+}
+
+div.dashboard-info {
+    border: 1px solid black;
+    padding: 2%;
+    width: 40%;
+    margin: 2%;
+}
