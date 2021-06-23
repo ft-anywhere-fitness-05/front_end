@@ -2,7 +2,7 @@ import {
   FETCH_START,
   FETCH_SUCCESS,
   FETCH_FAIL,
-  DELETE_CLASS,
+  CLASS_DELETED,
   CLASS_ADDED,
 } from "../actions/classActions";
 
@@ -36,7 +36,7 @@ export const classReducer = (state = initialState, action) => {
         ...state,
         classes: [...state.classes, action.payload],
       };
-    case DELETE_CLASS:
+    case CLASS_DELETED:
       return {
         ...state,
         classes: state.classes.filter((c) => c.class_id !== action.payload),

@@ -4,7 +4,7 @@ export const FETCH_START = "FETCH_START";
 export const FETCH_SUCCESS = "FETCH_SUCCESS";
 export const FETCH_FAIL = "FETCH_FAIL";
 export const CLASS_ADDED = "CLASS_ADDED";
-export const DELETE_CLASS = "DELETE_CLASS";
+export const CLASS_DELETED = "CLASS_DELETED";
 
 export const fetchClasses = () => {
   return (dispatch) => {
@@ -34,6 +34,28 @@ export const addClass = (newClass) => {
   };
 };
 
+export const joinClass = (info) => {
+  return () => {
+    axiosWithAuth().post(
+      `https://fitnessapplambda5.herokuapp.com/api/user-classes`,
+      info
+    );
+  };
+};
+
+export const deleteClass = (id) => {
+  return (dispatch) => {
+    axiosWithAuth()
+      .delete(`https://fitnessapplambda5.herokuapp.com/api/classes/${id}/`)
+      .then(() => {
+        dispatch(classDeleted(id));
+      })
+      .catch((err) => {
+        console.log("Error: ", err);
+      });
+  };
+};
+
 export const fetchStart = () => {
   return { type: FETCH_START };
 };
@@ -50,6 +72,6 @@ export const classAdded = (newClass) => {
   return { type: CLASS_ADDED, payload: newClass };
 };
 
-export const deleteClass = (id) => {
-  return { type: DELETE_CLASS, payload: id };
+export const classDeleted = (id) => {
+  return { type: CLASS_DELETED, payload: id };
 };

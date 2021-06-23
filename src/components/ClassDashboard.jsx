@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
 import { useHistory } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchClasses, deleteClass } from "../actions/classActions";
-import axiosWithAuth from "../utils/axiosWithAuth";
+import { fetchClasses, joinClass, deleteClass } from "../actions/classActions";
 
 const ClassDashboard = () => {
   const { classes, isLoading, error } = useSelector((state) => state.classes);
@@ -25,22 +24,11 @@ const ClassDashboard = () => {
 
   const handleJoin = (userId, classId) => {
     const info = { user_id: userId, class_id: classId };
-    axiosWithAuth()
-      .post(`https://fitnessapplambda5.herokuapp.com/api/user-classes`, info)
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+    dispatch(joinClass(info));
   };
 
   const handleDelete = (id) => {
-    axiosWithAuth()
-      .delete(`https://fitnessapplambda5.herokuapp.com/api/classes/${id}/`)
-      .then((res) => {
-        dispatch(deleteClass(id));
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log("Error: ", err);
-      });
+    dispatch(deleteClass(id));
   };
 
   if (isLoading) {
