@@ -84,9 +84,9 @@ const ClassDashboard = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    classes: state.classes,
-    isLoading: state.isLoading,
-    error: state.error,
+    classes: state.classes.classes,
+    isLoading: state.classes.isLoading,
+    error: state.classes.error,
   };
 };
 
