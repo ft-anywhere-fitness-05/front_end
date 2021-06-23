@@ -6,10 +6,12 @@ import {
   CLASS_ADDED,
   CLASS_EDITED,
   CLASS_JOINED,
+  RESERVATIONS_SET,
 } from "../actions/classActions";
 
 export const initialState = {
   classes: [],
+  reservedClasses: [],
   isLoading: false,
   error: "",
 };
@@ -32,6 +34,11 @@ export const classReducer = (state = initialState, action) => {
         ...state,
         isLoading: false,
         error: action.payload,
+      };
+    case RESERVATIONS_SET:
+      return {
+        ...state,
+        reservedClasses: action.payload,
       };
     case CLASS_ADDED:
       return {

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router";
 import { useDispatch } from "react-redux";
 import axiosWithAuth from "../utils/axiosWithAuth";
-import { editClass } from "../actions/classActions";
+import { editClass, fetchReservationList } from "../actions/classActions";
 
 const initialFormValues = {
   class_name: "",
@@ -23,15 +23,8 @@ const EditClass = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    axiosWithAuth()
-      .get(`https://fitnessapplambda5.herokuapp.com/api/classes/${id}`)
-      .then((res) => {
-        setFormValues(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [id]);
+    dispatch(fetchReservationList(id));
+  }, [dispatch]);
 
   const handleChange = (e) => {
     setFormValues({ ...formValues, [e.target.name]: e.target.value });

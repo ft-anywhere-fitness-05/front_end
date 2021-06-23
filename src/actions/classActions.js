@@ -3,6 +3,7 @@ import axiosWithAuth from "../utils/axiosWithAuth";
 export const FETCH_START = "FETCH_START";
 export const FETCH_SUCCESS = "FETCH_SUCCESS";
 export const FETCH_FAIL = "FETCH_FAIL";
+export const RESERVATIONS_SET = "RESERVATIONS_SET";
 export const CLASS_ADDED = "CLASS_ADDED";
 export const CLASS_EDITED = "CLASS_EDITED";
 export const CLASS_JOINED = "CLASS_JOINED";
@@ -19,6 +20,19 @@ export const fetchClasses = () => {
       })
       .catch((err) => {
         dispatch(fetchFail(err));
+      });
+  };
+};
+
+export const fetchReservationList = (userId) => {
+  return (dispatch) => {
+    axiosWithAuth()
+      .get(`https://fitnessapplambda5.herokuapp.com/api/user-classes/${userId}`)
+      .then((res) => {
+        dispatch(setReservations(res.data));
+      })
+      .catch((err) => {
+        console.log(err);
       });
   };
 };
@@ -80,6 +94,10 @@ export const deleteClass = (id) => {
 
 export const fetchStart = () => {
   return { type: FETCH_START };
+};
+
+export const setReservations = (reservedClasses) => {
+  return { type: RESERVATIONS_SET, payload: reservedClasses };
 };
 
 export const fetchSuccess = (classes) => {
