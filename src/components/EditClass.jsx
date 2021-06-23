@@ -13,7 +13,7 @@ const initialFormValues = {
   max_class_size: "",
 };
 
-const EditClass = (props) => {
+const EditClass = () => {
   const [formValues, setFormValues] = useState(initialFormValues);
 
   const { id } = useParams();
@@ -28,7 +28,7 @@ const EditClass = (props) => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  });
 
   const handleChange = (e) => {
     setFormValues({ ...formValues, [e.target.name]: e.target.value });

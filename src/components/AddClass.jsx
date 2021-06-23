@@ -3,8 +3,6 @@ import { useHistory } from "react-router";
 import { useDispatch } from "react-redux";
 import { addClass } from "../actions/classActions";
 
-import axiosWithAuth from "../utils/axiosWithAuth";
-
 const initialFormValues = {
   class_name: "Yoga",
   type_id: 1,
