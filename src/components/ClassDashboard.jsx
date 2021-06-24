@@ -1,10 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchClasses, joinClass, deleteClass } from "../actions/classActions";
 import Navigation from "./Navigation";
+import SearchBar from "./SearchBar";
 
 const ClassDashboard = () => {
+  const [searchQuery, setSearchQuery] = useState("");
+
   const { classes, isLoading, error } = useSelector((state) => state.classes);
   const userType = useSelector((state) => state.user.userType);
   const userId = useSelector((state) => state.user.id);
@@ -14,6 +17,19 @@ const ClassDashboard = () => {
   useEffect(() => {
     dispatch(fetchClasses());
   }, [dispatch]);
+
+  const filterClasses = (classes, query) => {
+    if (!query) {
+      return classes;
+    }
+
+    return classes.filter((c) => {
+      const className = c.class_name.toLowerCase();
+      return className.includes(query);
+    });
+  };
+
+  const filteredClasses = filterClasses(classes, searchQuery);
 
   const handleAdd = () => {
     push("/add-class");
@@ -43,8 +59,9 @@ const ClassDashboard = () => {
   return (
     <div>
       <Navigation />
+      <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
       <div className="dashboard-container">
-        {classes.map((c) => (
+        {filteredClasses.map((c) => (
           <div className="dashboard-info" key={c.class_id}>
             <h2>Name: {c.class_name}</h2>
             <h3>Location: {c.location}</h3>

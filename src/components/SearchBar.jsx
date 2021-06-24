@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import { useHistory } from "react-router";
 
-const SearchBar = () => {
-  const { classes, isLoading, error } = useSelector((state) => state.classes);
-  const [search, setSearch] = useState("");
+const SearchBar = ({ searchQuery, setSearchQuery }) => {
+  const { push } = useHistory();
 
   const handleChange = (e) => {
-    setSearch(e.target.value);
+    setSearchQuery(e.target.value);
   };
 
   return (
