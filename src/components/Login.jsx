@@ -29,27 +29,8 @@ function Login(props) {
     props.dispatch(fetchLogin(credentials))
 
     setTimeout(function(){
-      // console.log(onBoarded)
-      // console.log(userType)
-      // if (true){ //on_boarding === false
-      //   props.history.push("/onboarding")
-      // } else {
-      //   props.history.push("/dashboard")
-      // }
       props.history.push("/onboarding")
     }, 5000)
-    // if (on_boarding === false){
-    //   props.history.push("/onboarding")
-    // } else {
-    //   props.history.push("/dashboard")
-    // }
-
-    // setTimeout(function(){
-    //   props.history.push("/onboarding")
-    // }, 3000)
-
-    // props.history.push("/onboarding")
-    // props.history.push("/dashboard")
   }
 
   return (
