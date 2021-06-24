@@ -1,26 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchReservationList } from "../actions/classActions";
 
 import Navigation from "./Navigation";
 
 import axiosWithAuth from "../utils/axiosWithAuth";
 
-const ReservationList = (props) => {
-  const { userId } = props;
-  const [classes, setClasses] = useState([]);
+const ReservationList = () => {
+  const reservedClasses = useSelector((state) => state.reservedClasses);
+  const userId = useSelector((state) => state.user.id);
   const { push } = useHistory();
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    axiosWithAuth()
-      .get(`https://fitnessapplambda5.herokuapp.com/api/user-classes/${userId}`)
-      .then((res) => {
-        setClasses(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  });
+    dispatch(fetchReservationList(userId));
+  }, []);
 
   const handleDelete = (classId) => {
     axiosWithAuth()
@@ -43,7 +38,7 @@ const ReservationList = (props) => {
     <div>
       <Navigation />
       <div>
-        {classes.map((c) => (
+        {reservedClasses.map((c) => (
           <div key={c.class_id}>
             <h2>Name: {c.class_name}</h2>
             <h3>Location: {c.location}</h3>
@@ -63,10 +58,4 @@ const ReservationList = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    userId: state.user.id,
-  };
-};
-
-export default connect(mapStateToProps)(ReservationList);
+export default ReservationList;
