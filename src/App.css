@@ -49,6 +49,7 @@ table {
 
 body {
     background-image: url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8d29ya291dHxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80');
+    background-size: cover;
 }
 
 div.login {
@@ -57,12 +58,18 @@ div.login {
     align-items: center;
     background: linear-gradient(orangered, 10%, white, 80%, orangered) ;
     margin: 0 30%;
+    margin-top: 30%;
+    padding: 10% 0;
 }
 
 .login form {
     display: flex;
     flex-flow: column;
     
+}
+
+.login input {
+    margin: 2% 0;
 }
 
 .login button {
@@ -73,7 +80,7 @@ div.login {
 
 .login button:hover {
     transform: scale(1.1);
-}
+} 
 
 div.registration {
     display: flex;
@@ -81,13 +88,18 @@ div.registration {
     align-items: center;
     background: linear-gradient(orangered, 10%, white, 80%, orangered) ;
     margin: 0 30%;
-
+    margin-top: 30%;
+    padding: 10% 0;
 }
 
 .registration form {
     display: flex;
     flex-flow: column;
     width: 35%;
+}
+
+.registration input {
+    margin: 2% 0;
 }
 
 .registration button {
@@ -105,7 +117,7 @@ div.registration {
     flex-flow: row;
     flex-wrap: wrap;
     
-    /* max-width: 100%; */
+   
     
 }
 
@@ -120,3 +132,70 @@ div.dashboard-info {
     background: linear-gradient(orangered, 10%, white, 80%, orangered) ;
 
 }
+
+.addTitle {
+    font-size: 4rem;
+    font-weight: bold;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin: 1% 0 2% 40%;
+    color: orangered;
+}
+
+div.addClass {
+     display: flex;
+     width: 30%;
+     height: 60vh;
+     padding: 2%;
+     margin: auto;
+     border: 2px solid black;
+     background: linear-gradient(orangered, 10%, white, 80%, orangered) ;
+     
+}
+
+.addClass form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    flex-flow: column;
+    width: 100%;
+    
+    
+}
+
+.addClass label {
+    font-size: 1.2rem;
+    
+}
+
+.addClass input {
+    font-size: 0.8rem;
+    margin-bottom: 2%;
+    
+    border-radius: 5px;
+    
+}
+
+.addClass select {
+    margin-bottom: 2%;
+}
+
+.addClass button {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    width: 30%;
+    margin-bottom: 1%;
+    border-radius: 5px;
+    background-color: white;       
+    color: orangered;
+}
+
+.addClass button:hover {
+    transform: scale(1.1);
+}
+
+
+.addClass button:last-of-type {
+    width: 20%;
+}
+ 

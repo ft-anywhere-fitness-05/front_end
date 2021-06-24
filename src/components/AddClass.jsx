@@ -42,7 +42,9 @@ const AddClass = () => {
   };
 
   return (
-    <div>
+    <>
+    <h1 className='addTitle'>Add A Class</h1>
+    <div className='addClass'>
       <form onSubmit={handleSubmit}>
         <label>Class Name</label>
         <input
@@ -121,6 +123,7 @@ const AddClass = () => {
         <button onClick={handleCancel}>Cancel</button>
       </form>
     </div>
+    </>
   );
 };
 
