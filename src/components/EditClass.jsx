@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router";
 import { useDispatch } from "react-redux";
 import axiosWithAuth from "../utils/axiosWithAuth";
-import { editClass, fetchReservationList } from "../actions/classActions";
+import { editClass } from "../actions/classActions";
 
 const initialFormValues = {
   class_name: "",
