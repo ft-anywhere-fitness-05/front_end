@@ -29,14 +29,15 @@ function Login(props) {
     props.dispatch(fetchLogin(credentials))
 
     setTimeout(function(){
-      console.log(onBoarded)
-      console.log(userType)
-      if (true){ //on_boarding === false
-        props.history.push("/onboarding")
-      } else {
-        props.history.push("/dashboard")
-      }
-    }, 8000)
+      // console.log(onBoarded)
+      // console.log(userType)
+      // if (true){ //on_boarding === false
+      //   props.history.push("/onboarding")
+      // } else {
+      //   props.history.push("/dashboard")
+      // }
+      props.history.push("/onboarding")
+    }, 5000)
     // if (on_boarding === false){
     //   props.history.push("/onboarding")
     // } else {
