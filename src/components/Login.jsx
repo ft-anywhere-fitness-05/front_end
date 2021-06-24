@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-import axiosWithAuth from "../utils/axiosWithAuth";
-
 import { connect } from "react-redux";
 import { stashUserData } from "./../actions/userInformationActions"
 
@@ -15,7 +13,6 @@ function Login(props) {
   const [credentials, setCredentials] = useState(initialCredentials);
 
   const { id, userType } = props;
-  // const [id, setId] = useState(initialId)
 
   const handleChange = (e) => {
     setCredentials({
@@ -26,7 +23,7 @@ function Login(props) {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    console.log("You have logged in", credentials);
+    
     axios
       .post(
         "https://fitnessapplambda5.herokuapp.com/api/auth/login",
@@ -35,30 +32,16 @@ function Login(props) {
       .then((res) => {
         console.log(res);
         localStorage.setItem("token", res.data.token);
-        //I will need to add the id from the response to state once this is built into the API
         props.dispatch(stashUserData(res.data))
         props.history.push("/dashboard");
       })
       .catch((err) => {
         console.log(err);
       });
-      
-      // axiosWithAuth().get("https://fitnessapplambda5.herokuapp.com/api/users/1")
-      //   .then(res => {console.log(res)})
-      //   .catch(err => {console.log(err)})
-
-      // props.dispatch(determineId())
-
-      // props.dispatch(checkInstructor(1))
-      // console.log()
-      console.log(id)
-      console.log(userType)
-
   };
 
   return (
     <div>
-      <h1>Here are the user details: {id}{userType}</h1>
       <h3>Log In</h3>
       <form onSubmit={handleLogin}>
         <input value={credentials.username} type="text" name="username" onChange={handleChange} />
@@ -79,15 +62,3 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps)(Login);
-
-// export default Login
-
-// const mapStateToProps = (state) => {
-//   return {
-//     classes: state.classes,
-//     isLoading: state.isLoading,
-//     error: state.error,
-//   };
-// };
-
-// export default connect(mapStateToProps)(ClassDashboard);
