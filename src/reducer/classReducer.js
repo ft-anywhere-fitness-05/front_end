@@ -2,22 +2,18 @@ import {
   FETCH_START,
   FETCH_SUCCESS,
   FETCH_FAIL,
+  CLASS_DELETED,
+  CLASS_ADDED,
+  CLASS_EDITED,
+  CLASS_JOINED,
+  RESERVATIONS_SET,
 } from "../actions/classActions";
 
 export const initialState = {
   classes: [],
+  reservedClasses: [],
   isLoading: false,
   error: "",
-  formValues: {
-    name: "",
-    location: "",
-    start_time: "",
-    duration: "",
-    intensity: "",
-    class_description: "",
-    current_class_size: 0,
-    max_class_size: "",
-  },
 };
 
 export const classReducer = (state = initialState, action) => {
@@ -38,6 +34,39 @@ export const classReducer = (state = initialState, action) => {
         ...state,
         isLoading: false,
         error: action.payload,
+      };
+    case RESERVATIONS_SET:
+      return {
+        ...state,
+        reservedClasses: action.payload,
+      };
+    case CLASS_ADDED:
+      return {
+        ...state,
+        classes: [...state.classes, action.payload.createdClass],
+      };
+    case CLASS_EDITED:
+      return {
+        ...state,
+        classes: state.classes.map((c) => {
+          return c.class_id === action.payload.updatedClass.class_id
+            ? action.payload.updatedClass
+            : c;
+        }),
+      };
+    case CLASS_JOINED:
+      return {
+        ...state,
+        classes: state.classes.map((c) => {
+          return c.class_id === action.payload.updatedClass.class_id
+            ? action.payload.updatedClass
+            : c;
+        }),
+      };
+    case CLASS_DELETED:
+      return {
+        ...state,
+        classes: state.classes.filter((c) => c.class_id !== action.payload),
       };
     default:
       return state;
