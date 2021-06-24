@@ -4,6 +4,8 @@ import axios from "axios";
 import { connect } from "react-redux";
 import { stashUserData } from "./../actions/userInformationActions";
 
+import { fetchLogin } from "./../actions/userInformationActions"
+
 const initialCredentials = {
   username: "",
   password: "",
@@ -12,7 +14,7 @@ const initialCredentials = {
 function Login(props) {
   const [credentials, setCredentials] = useState(initialCredentials);
 
-  const { id, userType } = props;
+  const { onBoarded, userType } = props;
 
   const handleChange = (e) => {
     setCredentials({
@@ -23,21 +25,30 @@ function Login(props) {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    
-    axios
-      .post(
-        "https://fitnessapplambda5.herokuapp.com/api/auth/login",
-        credentials
-      )
-      .then((res) => {
-        console.log(res);
-        localStorage.setItem("token", res.data.token);
-        props.dispatch(stashUserData(res.data))
-        props.history.push("/dashboard");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+
+    props.dispatch(fetchLogin(credentials))
+
+    setTimeout(function(){
+      console.log(onBoarded)
+      console.log(userType)
+      if (true){ //on_boarding === false
+        props.history.push("/onboarding")
+      } else {
+        props.history.push("/dashboard")
+      }
+    }, 8000)
+    // if (on_boarding === false){
+    //   props.history.push("/onboarding")
+    // } else {
+    //   props.history.push("/dashboard")
+    // }
+
+    // setTimeout(function(){
+    //   props.history.push("/onboarding")
+    // }, 3000)
+
+    // props.history.push("/onboarding")
+    // props.history.push("/dashboard")
   }
 
   return (
@@ -68,8 +79,8 @@ function Login(props) {
 
 const mapStateToProps = (state) => {
   return {
-    id: state.id,
-    userType: state.userType,
+    onBoarded: state.user.on_boarding,
+    userType: state.user.userType
   };
 };
 
