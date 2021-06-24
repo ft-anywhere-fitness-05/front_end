@@ -44,11 +44,6 @@ const ClassDashboard = () => {
     <div>
       <Navigation />
       <div className="dashboard-container">
-        {userType === "instructor" && (
-          <div>
-            <button onClick={handleAdd}>Add Class</button>
-          </div>
-        )}
         {classes.map((c) => (
           <div className="dashboard-info" key={c.class_id}>
             <h2>Name: {c.class_name}</h2>
@@ -76,11 +71,13 @@ const ClassDashboard = () => {
             )}
           </div>
         ))}
-        <div>
-          <button onClick={handleAdd}>Add Class</button>
-        </div>
-    </div>
-    
+          {userType === "instructor" && (
+            <div>
+              <button onClick={handleAdd}>Add Class</button>
+            </div>
+          )}
+      </div>
+    </div> 
   );
   
 };
