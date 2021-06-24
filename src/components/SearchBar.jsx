@@ -1,17 +1,17 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import { useHistory } from "react-router";
+import React from "react";
 
 const SearchBar = ({ searchQuery, setSearchQuery }) => {
-  const { push } = useHistory();
-
   const handleChange = (e) => {
-    setSearchQuery(e.target.value);
+    setSearchQuery(e.target.value.toLowerCase());
   };
 
   return (
     <form>
-      <input type="text" placeholder="search..." onChange={handleChange} />
+      <input
+        type="text"
+        placeholder="Search classes..."
+        onChange={handleChange}
+      />
     </form>
   );
 };
