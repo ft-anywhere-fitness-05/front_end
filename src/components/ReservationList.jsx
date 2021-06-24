@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useHistory } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchReservationList } from "../actions/classActions";
@@ -15,7 +15,8 @@ const ReservationList = () => {
 
   useEffect(() => {
     dispatch(fetchReservationList(userId));
-  }, []);
+    console.log(reservedClasses);
+  });
 
   const handleDelete = (classId) => {
     axiosWithAuth()
@@ -37,7 +38,7 @@ const ReservationList = () => {
   return (
     <div>
       <Navigation />
-      <div>
+      {/* <div>
         {reservedClasses.map((c) => (
           <div key={c.class_id}>
             <h2>Name: {c.class_name}</h2>
@@ -53,7 +54,7 @@ const ReservationList = () => {
           </div>
         ))}
         <button onClick={handleBack}>Back to Class Sign-up</button>
-      </div>
+      </div> */}
     </div>
   );
 };
