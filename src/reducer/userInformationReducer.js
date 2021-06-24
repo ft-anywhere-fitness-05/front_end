@@ -2,7 +2,8 @@ import { STASH_USER_DATA } from '../actions/userInformationActions'
 
 export const initialState = {
   id: '',
-  userType: ''
+  userType: '',
+  onBoarded: ''
 };
 
 export const userInformationReducer = (state = initialState, action) => {
@@ -11,7 +12,8 @@ export const userInformationReducer = (state = initialState, action) => {
       return {
         ...state,
         userType: action.payload.role_name,
-        id: action.payload.user_id
+        id: action.payload.user_id,
+        onBoarded: action.payload.on_boarding
       };
     default:
       return state;
