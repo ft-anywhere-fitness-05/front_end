@@ -79,9 +79,10 @@ const ClassDashboard = () => {
         <div>
           <button onClick={handleAdd}>Add Class</button>
         </div>
-      </div>
     </div>
+    
   );
+  
 };
 
 export default ClassDashboard;
