@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 
 import postOnBoarding from "./../utils/postOnBoarding"
 
-import axiosWithAuth from "./../utils/axiosWithAuth"
-import axios from 'axios';
+// import axiosWithAuth from "./../utils/axiosWithAuth"
+// import axios from 'axios';
 
 const Onboarding = (props) => {
   const { userType, onBoarded } = props;

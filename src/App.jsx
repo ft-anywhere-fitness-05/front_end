@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import Navigation from "./components/Navigation";
+// import Navigation from "./components/Navigation";
 import Registration from "./components/Registration";
 import ClassDashboard from "./components/ClassDashboard";
 import ReservationList from "./components/ReservationList";
