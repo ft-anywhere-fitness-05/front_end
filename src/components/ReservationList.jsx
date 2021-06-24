@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router";
 import { connect } from "react-redux";
 
+import Navigation from "./Navigation";
+
 import axiosWithAuth from "../utils/axiosWithAuth";
 
 const ReservationList = (props) => {
@@ -39,21 +41,24 @@ const ReservationList = (props) => {
 
   return (
     <div>
-      {classes.map((c) => (
-        <div key={c.class_id}>
-          <h2>Name: {c.class_name}</h2>
-          <h3>Location: {c.location}</h3>
-          <h3>Date: {c.date}</h3>
-          <h4>Start Time: {c.start_time}</h4>
-          <h4>Duration: {c.duration}</h4>
-          <h4>Intensity: {c.intensity}</h4>
-          <p>Class Description: {c.class_description}</p>
-          <div className="buttons">
-            <button onClick={() => handleDelete(c.class_id)}>Delete</button>
+      <Navigation />
+      <div>
+        {classes.map((c) => (
+          <div key={c.class_id}>
+            <h2>Name: {c.class_name}</h2>
+            <h3>Location: {c.location}</h3>
+            <h3>Date: {c.date}</h3>
+            <h4>Start Time: {c.start_time}</h4>
+            <h4>Duration: {c.duration}</h4>
+            <h4>Intensity: {c.intensity}</h4>
+            <p>Class Description: {c.class_description}</p>
+            <div className="buttons">
+              <button onClick={() => handleDelete(c.class_id)}>Delete</button>
+            </div>
           </div>
-        </div>
-      ))}
-      <button onClick={handleBack}>Back to Class Sign-up</button>
+        ))}
+        <button onClick={handleBack}>Back to Class Sign-up</button>
+      </div>
     </div>
   );
 };

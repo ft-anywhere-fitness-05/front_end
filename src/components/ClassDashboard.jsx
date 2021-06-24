@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useHistory } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchClasses, joinClass, deleteClass } from "../actions/classActions";
+import Navigation from "./Navigation";
 
 const ClassDashboard = () => {
   const { classes, isLoading, error } = useSelector((state) => state.classes);
@@ -40,41 +41,44 @@ const ClassDashboard = () => {
   }
 
   return (
-    <div className="dashboard-container">
-      {userType === "instructor" && (
+    <div>
+      <Navigation />
+      <div className="dashboard-container">
+        {userType === "instructor" && (
+          <div>
+            <button onClick={handleAdd}>Add Class</button>
+          </div>
+        )}
+        {classes.map((c) => (
+          <div className="dashboard-info" key={c.class_id}>
+            <h2>Name: {c.class_name}</h2>
+            <h3>Location: {c.location}</h3>
+            <h3>Date: {c.date}</h3>
+            <h4>Start Time: {c.start_time}</h4>
+            <h4>Duration: {c.duration}</h4>
+            <h4>Intensity: {c.intensity}</h4>
+            <p>Class Description: {c.class_description}</p>
+            <p>
+              Class Size: current: {c.current_class_size} / max:{" "}
+              {c.max_class_size}
+            </p>
+            {userType === "instructor" ? (
+              <div className="instructor-buttons">
+                <button onClick={() => handleEdit(c.class_id)}>Update</button>
+                <button onClick={() => handleDelete(c.class_id)}>Delete</button>
+              </div>
+            ) : (
+              <div className="client-buttons">
+                <button onClick={() => handleJoin(userId, c.class_id)}>
+                  Join
+                </button>{" "}
+              </div>
+            )}
+          </div>
+        ))}
         <div>
           <button onClick={handleAdd}>Add Class</button>
         </div>
-      )}
-      {classes.map((c) => (
-        <div className="dashboard-info" key={c.class_id}>
-          <h2>Name: {c.class_name}</h2>
-          <h3>Location: {c.location}</h3>
-          <h3>Date: {c.date}</h3>
-          <h4>Start Time: {c.start_time}</h4>
-          <h4>Duration: {c.duration}</h4>
-          <h4>Intensity: {c.intensity}</h4>
-          <p>Class Description: {c.class_description}</p>
-          <p>
-            Class Size: current: {c.current_class_size} / max:{" "}
-            {c.max_class_size}
-          </p>
-          {userType === "instructor" ? (
-            <div className="instructor-buttons">
-              <button onClick={() => handleEdit(c.class_id)}>Update</button>
-              <button onClick={() => handleDelete(c.class_id)}>Delete</button>
-            </div>
-          ) : (
-            <div className="client-buttons">
-              <button onClick={() => handleJoin(userId, c.class_id)}>
-                Join
-              </button>{" "}
-            </div>
-          )}
-        </div>
-      ))}
-      <div>
-        <button onClick={handleAdd}>Add Class</button>
       </div>
     </div>
   );
