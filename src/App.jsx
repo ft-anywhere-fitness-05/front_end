@@ -15,14 +15,8 @@ function App() {
   return (
     <Router>
       <Switch>
-        <ProtectedRoute path="/dashboard">
-          <Navigation />
-          <ClassDashboard />
-        </ProtectedRoute>
-        <ProtectedRoute path="/reservations">
-          <Navigation />
-          <ReservationList />
-        </ProtectedRoute>
+        <ProtectedRoute path="/dashboard" component={ClassDashboard} />
+        <ProtectedRoute path="/reservations" component={ReservationList} />
         <ProtectedRoute path="/add-class" component={AddClass} />
         <ProtectedRoute path="/edit-class/:id" component={EditClass} />
         <Route path="/login" component={Login} />

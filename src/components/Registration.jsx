@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
+
 const initialCredentials = {
   username: "",
   password: "",
@@ -27,7 +28,7 @@ function Registration(props) {
       )
       .then((res) => {
         console.log(res);
-        props.history.push("/login")
+        props.history.push("/login");
       })
       .catch((err) => {
         console.log(err);
@@ -35,12 +36,30 @@ function Registration(props) {
   };
 
   return (
-    <div>
+    <div className='registration'>
       <h3>Register</h3>
       <form onSubmit={handleRegister}>
-        <input value={credentials.username} type="text" name="username" onChange={handleChange} />
-        <input value={credentials.password} type="password" name="password" onChange={handleChange} />
-        <input value={credentials.authCode} type="text" name="authCode" onChange={handleChange} />
+        <input
+          value={credentials.username}
+          type="text"
+          name="username"
+          placeholder="Username"
+          onChange={handleChange}
+        />
+        <input
+          value={credentials.password}
+          type="password"
+          name="password"
+          placeholder="Password"
+          onChange={handleChange}
+        />
+        <input
+          value={credentials.authCode}
+          type="text"
+          name="authCode"
+          placeholder="Authorization Code"
+          onChange={handleChange}
+        />
         <button>Register</button>
       </form>
     </div>

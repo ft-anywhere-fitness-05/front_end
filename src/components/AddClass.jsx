@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router";
-import { connect } from "react-redux";
-
-import axiosWithAuth from "../utils/axiosWithAuth";
+import { useDispatch } from "react-redux";
+import { addClass } from "../actions/classActions";
 
 const initialFormValues = {
   class_name: "Yoga",
@@ -20,6 +19,7 @@ const initialFormValues = {
 const AddClass = () => {
   const [newClass, setNewClass] = useState(initialFormValues);
   const { push } = useHistory();
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     let value = e.target.value;
@@ -30,20 +30,10 @@ const AddClass = () => {
     setNewClass({ ...newClass, [e.target.name]: value });
   };
 
-  console.log(newClass);
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(newClass);
-    console.log("click");
-    axiosWithAuth()
-      .post("https://fitnessapplambda5.herokuapp.com/api/classes/", newClass)
-      .then(() => {
-        push("/dashboard");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    dispatch(addClass(newClass));
+    push("/dashboard");
   };
 
   const handleCancel = (e) => {

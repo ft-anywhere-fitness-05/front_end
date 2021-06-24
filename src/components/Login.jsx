@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 
 import { connect } from "react-redux";
-import { stashUserData } from "./../actions/userInformationActions"
+import { stashUserData } from "./../actions/userInformationActions";
 
 const initialCredentials = {
   username: "",
@@ -38,14 +38,26 @@ function Login(props) {
       .catch((err) => {
         console.log(err);
       });
-  };
+  }
 
   return (
-    <div>
+    <div className="login">
       <h3>Log In</h3>
       <form onSubmit={handleLogin}>
-        <input value={credentials.username} type="text" name="username" onChange={handleChange} />
-        <input value={credentials.password} type="password" name="password" onChange={handleChange} />
+        <input
+          value={credentials.username}
+          type="text"
+          name="username"
+          placeholder="Username"
+          onChange={handleChange}
+        />
+        <input
+          value={credentials.password}
+          type="password"
+          name="password"
+          placeholder="Password"
+          onChange={handleChange}
+        />
         <button>Log In</button>
       </form>
       <p>Don't have an account?</p>
@@ -57,8 +69,8 @@ function Login(props) {
 const mapStateToProps = (state) => {
   return {
     id: state.id,
-    userType: state.userType
-  }
-}
+    userType: state.userType,
+  };
+};
 
 export default connect(mapStateToProps)(Login);
