@@ -1,10 +1,8 @@
 import React, { useState } from "react";
-import axios from "axios";
 
 import { connect } from "react-redux";
-import { stashUserData } from "./../actions/userInformationActions";
 
-import { fetchLogin } from "./../actions/userInformationActions"
+import { fetchLogin } from "./../actions/userInformationActions";
 
 const initialCredentials = {
   username: "",
@@ -14,7 +12,7 @@ const initialCredentials = {
 function Login(props) {
   const [credentials, setCredentials] = useState(initialCredentials);
 
-  const { onBoarded, userType } = props;
+  //   const { onBoarded, userType } = props;
 
   const handleChange = (e) => {
     setCredentials({
@@ -26,12 +24,12 @@ function Login(props) {
   const handleLogin = (e) => {
     e.preventDefault();
 
-    props.dispatch(fetchLogin(credentials))
+    props.dispatch(fetchLogin(credentials));
 
-    setTimeout(function(){
-      props.history.push("/onboarding")
-    }, 5000)
-  }
+    setTimeout(function () {
+      props.history.push("/onboarding");
+    }, 5000);
+  };
 
   return (
     <div className="login">
@@ -62,7 +60,7 @@ function Login(props) {
 const mapStateToProps = (state) => {
   return {
     onBoarded: state.user.on_boarding,
-    userType: state.user.userType
+    userType: state.user.userType,
   };
 };
 

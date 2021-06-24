@@ -71,15 +71,14 @@ const ClassDashboard = () => {
             )}
           </div>
         ))}
-          {userType === "instructor" && (
-            <div>
-              <button onClick={handleAdd}>Add Class</button>
-            </div>
-          )}
+        {userType === "instructor" && (
+          <div>
+            <button onClick={handleAdd}>Add Class</button>
+          </div>
+        )}
       </div>
-    </div> 
+    </div>
   );
-  
 };
 
 export default ClassDashboard;
