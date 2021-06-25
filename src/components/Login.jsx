@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { fetchLogin } from "./../actions/userInformationActions";
@@ -52,7 +52,7 @@ function Login(props) {
         <button>Log In</button>
       </form>
       <p>Don't have an account?</p>
-      <a href="/register">Register Here</a>
+      <Link to="/register">Register Here</Link>
     </div>
   );
 }
