@@ -25,7 +25,10 @@ function App() {
         <ProtectedRoute path="/add-class" component={AddClass} />
         <ProtectedRoute path="/edit-class/:id" component={EditClass} />
         <Route path="/login" component={Login} />
-        <Route path="/register" component={Registration} />
+        {/* <Route path="/register" component={Registration} /> */}
+        <Route path="/register">
+          <Registration/>
+        </Route>
         <Route component={Login} />
       </Switch>
     </Router>
