@@ -60,6 +60,11 @@ const ClassDashboard = () => {
     <div>
       <Navigation />
       <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+      {userType === "instructor" && (
+        <div>
+          <button onClick={handleAdd}>Add Class</button>
+        </div>
+      )}
       <div className="dashboard-container">
         {filteredClasses.map((c) => (
           <div className="dashboard-info" key={c.class_id}>
@@ -88,11 +93,6 @@ const ClassDashboard = () => {
             )}
           </div>
         ))}
-        {userType === "instructor" && (
-          <div>
-            <button onClick={handleAdd}>Add Class</button>
-          </div>
-        )}
       </div>
     </div>
   );
