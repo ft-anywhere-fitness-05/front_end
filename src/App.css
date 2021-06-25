@@ -58,7 +58,7 @@ div.login {
     align-items: center;
     background: linear-gradient(orangered, 10%, white, 80%, orangered) ;
     margin: 0 30%;
-    margin-top: 30%;
+    margin-top: 10%;
     padding: 10% 0;
 }
 
@@ -87,8 +87,8 @@ div.registration {
     flex-direction: column;
     align-items: center;
     background: linear-gradient(orangered, 10%, white, 80%, orangered) ;
-    margin: 0 30%;
-    margin-top: 30%;
+    margin: 0 35%;
+    margin-top: 10%;
     padding: 10% 0;
 }
 
@@ -116,9 +116,6 @@ div.registration {
     display: flex;
     flex-flow: row;
     flex-wrap: wrap;
-    
-   
-    
 }
 
 div.dashboard-info {
@@ -130,7 +127,6 @@ div.dashboard-info {
 
 .dashboard-info:hover {
     background: linear-gradient(orangered, 10%, white, 80%, orangered) ;
-
 }
 
 .addTitle {
@@ -199,3 +195,19 @@ div.addClass {
     width: 20%;
 }
  
+.reservation-container {
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+}
+
+div.reservation-info {
+    border: 1px solid black;
+    padding: 2%;
+    width: 40%;
+    margin: 2%;
+}
+
+.reservation-info:hover {
+    background: linear-gradient(orangered, 10%, white, 80%, orangered) ;
+}
