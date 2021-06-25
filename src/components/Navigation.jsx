@@ -8,7 +8,7 @@ const Navigation = () => {
   };
 
   return (
-    <div>
+    <div className='nav'>
       <Link to="/dashboard">Dashboard</Link>
       <Link to="/reservations">My Classes</Link>
       <Link onClick={logout}>Logout</Link>
