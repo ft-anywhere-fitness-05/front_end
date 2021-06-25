@@ -216,4 +216,33 @@ div.reservation-info {
     display: flex;
     justify-content: space-between;
     max-width: 15%;
+
+}
+
+.onBoarding {
+    display: flex;
+    align-content: center;
+    background: linear-gradient(orangered, 10%, white, 80%, orangered) ;
+    font-size: 2rem;
+    margin: 0 30%;
+    margin-top: 10%;
+    padding: 2%;
+}
+
+.onBoarding h3 {
+    font-size: 4rem;
+    margin: 2% 0 2% 10%;
+}
+
+.onBoarding p {
+    display:flex;
+    justify-content: center;
+    margin-bottom: 2%;
+}
+
+.onBoarding  button {
+    margin-left:45%;
+    border-radius: 5px;
+    color:orangered;
+    background-color: white;
 }

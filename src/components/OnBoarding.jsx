@@ -24,7 +24,7 @@ const Onboarding = (props) => {
   };
 
   return (
-    <div>
+    <div className='onBoarding'>
       {userType === "client" && (
         <div className="clientOnboarding">
           <h3>Welcome, Student!</h3>
