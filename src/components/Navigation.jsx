@@ -11,7 +11,7 @@ const Navigation = () => {
   };
 
   return (
-    <div>
+    <div className='nav'>
       <Link to="/dashboard">Dashboard</Link>
       {userType === "client" && <Link to="/reservations">My Classes</Link>}
       <Link onClick={logout}>Logout</Link>

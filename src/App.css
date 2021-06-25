@@ -211,3 +211,9 @@ div.reservation-info {
 .reservation-info:hover {
     background: linear-gradient(orangered, 10%, white, 80%, orangered) ;
 }
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    max-width: 15%;
+}
