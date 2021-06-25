@@ -195,3 +195,19 @@ div.addClass {
     width: 20%;
 }
  
+.reservation-container {
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+}
+
+div.reservation-info {
+    border: 1px solid black;
+    padding: 2%;
+    width: 40%;
+    margin: 2%;
+}
+
+.reservation-info:hover {
+    background: linear-gradient(orangered, 10%, white, 80%, orangered) ;
+}

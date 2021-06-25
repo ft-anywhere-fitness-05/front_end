@@ -36,9 +36,9 @@ const ReservationList = () => {
   };
 
   return (
-    <div>
+    <div className='reservation-container'>
       {classes.map((c) => (
-        <div key={c.class_id}>
+        <div className='reservation-info' key={c.class_id}>
           <h2>Name: {c.class_name}</h2>
           <h3>Location: {c.location}</h3>
           <h3>Date: {c.date}</h3>
