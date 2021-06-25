@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router";
+import { useDispatch } from "react-redux";
 import axiosWithAuth from "../utils/axiosWithAuth";
+import { editClass } from "../actions/classActions";
 
 const initialFormValues = {
   class_name: "",
@@ -13,11 +15,12 @@ const initialFormValues = {
   max_class_size: "",
 };
 
-const EditClass = (props) => {
+const EditClass = () => {
   const [formValues, setFormValues] = useState(initialFormValues);
 
   const { id } = useParams();
   const { push } = useHistory();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     axiosWithAuth()
@@ -28,7 +31,7 @@ const EditClass = (props) => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [id]);
 
   const handleChange = (e) => {
     setFormValues({ ...formValues, [e.target.name]: e.target.value });
@@ -36,17 +39,8 @@ const EditClass = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axiosWithAuth()
-      .patch(
-        `https://fitnessapplambda5.herokuapp.com/api/classes/${id}`,
-        formValues
-      )
-      .then((res) => {
-        push("/dashboard");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    dispatch(editClass(id, formValues));
+    push("/dashboard");
   };
 
   const handleCancel = (e) => {

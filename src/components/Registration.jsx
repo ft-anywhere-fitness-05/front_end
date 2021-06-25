@@ -1,6 +1,6 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router";
 import axios from "axios";
-
 
 const initialCredentials = {
   username: "",
@@ -10,6 +10,7 @@ const initialCredentials = {
 
 function Registration(props) {
   const [credentials, setCredentials] = useState(initialCredentials);
+  const { push } = useHistory();
 
   const handleChange = (e) => {
     setCredentials({
@@ -28,7 +29,7 @@ function Registration(props) {
       )
       .then((res) => {
         console.log(res);
-        props.history.push("/login")
+        push("/login");
       })
       .catch((err) => {
         console.log(err);
@@ -36,12 +37,30 @@ function Registration(props) {
   };
 
   return (
-    <div className='registration'>
+    <div className="registration">
       <h3>Register</h3>
       <form onSubmit={handleRegister}>
-        <input value={credentials.username} type="text" name="username" onChange={handleChange} />
-        <input value={credentials.password} type="password" name="password" onChange={handleChange} />
-        <input value={credentials.authCode} type="text" name="authCode" onChange={handleChange} />
+        <input
+          value={credentials.username}
+          type="text"
+          name="username"
+          placeholder="Username"
+          onChange={handleChange}
+        />
+        <input
+          value={credentials.password}
+          type="password"
+          name="password"
+          placeholder="Password"
+          onChange={handleChange}
+        />
+        <input
+          value={credentials.authCode}
+          type="text"
+          name="authCode"
+          placeholder="Authorization Code"
+          onChange={handleChange}
+        />
         <button>Register</button>
       </form>
     </div>
